@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactManager.Core.Entities
+﻿namespace ContactManager.Core.Entities
 {
-    internal class Contact
+    public class Contact
     {
+        public string Id { get; set; } // a string to uniquely identify the contract
+        public string Name { get; set; } // a string for the contacts name
+        public string Email { get; set; } // a string for the contact's email
     }
 }

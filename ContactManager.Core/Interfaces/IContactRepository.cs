@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ContactManager.Core.Entities;
+using Core.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ContactManager.Core.Interfaces
+namespace Core.Interfaces
 {
-    internal interface IContactRepository
+    public interface IContactRepository
     {
+        void Add(Contact contact);
+        Contact GetByName(string name);
+        IEnumerable<Contact> GetAll();
     }
 }
