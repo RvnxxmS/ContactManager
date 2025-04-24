@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ContactManager.Core.Interfaces;
+using ContactManager.Core.Services;
+using ContactManager.Infrastructure.Repositories;
+using Ninject;
 
 namespace ContactManager.Application
 {
-    internal class DependencyInjection
+    public static class DependencyInjection
     {
+        public static void AddApplicationServices(IKernel kernel, string filePath)
+        {
+            kernel.Bind<IContactRepository>().To<FileContactRepository>().InSingletonScope().WithConstructorArgument("filePath", filePath);
+            kernel.Bind<ContactService>().ToSelf().InSingletonScope();
+        }
     }
 }
