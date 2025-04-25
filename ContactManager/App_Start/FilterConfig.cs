@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace ContactManager
+namespace ContactManager.Web
 {
     public class FilterConfig
     {

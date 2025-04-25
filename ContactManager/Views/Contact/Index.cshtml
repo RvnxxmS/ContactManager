@@ -1,0 +1,54 @@
+@model IEnumerable<ContactManager.Core.Entities.Contact>
+
+@{
+    ViewBag.Title = "Contacts";
+}
+
+<h1><i class="fas fa-address-book"></i> Contacts</h1>
+
+<div class="mb-3">
+    <form method="get" action="@Url.Action("Index")" class="form-inline">
+        <div class="input-group">
+            <input type="text" name="searchQuery" class="form-control" placeholder="Search by name..." value="@ViewBag.SearchQuery" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="3" class="text-center">No contacts found.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var contact in Model)
+            {
+                <tr>
+                    <td>@contact.Name</td>
+                    <td>@contact.Email</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = contact.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                        <form method="post" action="@Url.Action("Delete", new { id = contact.Id })" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Add")" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add New Contact</a>
